@@ -1,0 +1,23 @@
+version: "3"
+
+tasks:
+  install:
+    deps: [install:frontend, install:backend]
+  install:frontend:
+    dir: ./frontend
+    cmds:
+      - npm i
+  install:backend:
+    dir: ./backend
+    cmds:
+      - go mod tidy
+  run:
+    deps: [run:frontend, run:backend]
+  run:frontend:
+    dir: ./frontend
+    cmds:
+      - npm run dev
+  run:backend:
+    dir: ./backend
+    cmds:
+      - go run ./server.go
